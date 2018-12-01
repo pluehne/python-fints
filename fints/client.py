@@ -118,7 +118,7 @@ class FinTS3Client:
             if seg:
                 m = re_data.match(seg)
                 if m:
-                    statement += mt940_to_array(m.group(2), processors, tags)
+                    statement.append(mt940_to_array(m.group(2), processors, tags))
 
         logger.debug('Statement: {}'.format(statement))
 
