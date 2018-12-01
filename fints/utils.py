@@ -9,7 +9,8 @@ def mt940_to_array(data, processors, tags):
     data = data.replace("@@", "\r\n")
     data = data.replace("-0000", "+0000")
     transactions = mt940.models.Transactions(processors = processors, tags = tags)
-    return transactions.parse(data)
+    transactions.parse(data)
+    return transactions
 
 
 def print_segments(message):
