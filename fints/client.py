@@ -67,7 +67,7 @@ class FinTS3Client:
 
         return self.accounts
 
-    def get_statement(self, account: SEPAAccount, start_date: datetime.datetime, end_date: datetime.date):
+    def get_statement(self, account: SEPAAccount, start_date: datetime.datetime, end_date: datetime.date, processors: dict = None, tags: dict = None):
         """
         Fetches the statement of a bank account in a certain timeframe.
 
@@ -118,7 +118,7 @@ class FinTS3Client:
             if seg:
                 m = re_data.match(seg)
                 if m:
-                    statement += mt940_to_array(m.group(2))
+                    statement += mt940_to_array(m.group(2), processors, tags)
 
         logger.debug('Statement: {}'.format(statement))
 

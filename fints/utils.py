@@ -5,10 +5,10 @@ from datetime import datetime
 from contextlib import contextmanager
 
 
-def mt940_to_array(data):
+def mt940_to_array(data, processors, tags):
     data = data.replace("@@", "\r\n")
     data = data.replace("-0000", "+0000")
-    transactions = mt940.models.Transactions()
+    transactions = mt940.models.Transactions(processors = processors, tags = tags)
     return transactions.parse(data)
 
 
